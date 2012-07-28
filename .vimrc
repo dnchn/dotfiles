@@ -2,49 +2,65 @@ set nocompatible
 call pathogen#infect()
 filetype plugin indent on
 syntax on
-" Enable error files & error jumping.
-set cf
-" Yanks go on clipboard instead. (Windows)
-set clipboard+=unnamed
-set history=256
+
+set confirm
+
+set history=50
 set autowrite
+
+" Always show status line.
+set laststatus=2
+" Show the current mode, command, and cursor position
+set showmode
+set showcmd
 set ruler
-set nu
+
+" Incremental search
+set incsearch
+" Colored search
+set hlsearch
+
+" Redefines Q to do formatting
+map Q gq
+
+" Line numbers
+set number
+
 set nowrap
+
 " Time to wait after ESC (default causes an annoying delay)
 set timeoutlen=250
 
-" Backspace over everything in insert mode
-set bs=2
-" Formatting (some of these are for coding in C)
-set ts=2
-" Tabs under smart indent
-set shiftwidth=2
-set sts=2
-set nocp incsearch
-set cinoptions=:0,p0,t0
-set cinwords=if,else,while,do,for,switch,case
-set formatoptions=tcqr
+" Allows backspacing over autoindent, line breaks, and start of insert
+set bs=indent,eol,start
+
 set cindent
+" Default values for cinwords
+set cinwords=if,else,while,do,for,switch,case
+set cinoptions=:0,p0,t0
+
 set autoindent
 set smarttab
-set expandtab
 
-" Visual
-" Show matching brackets.
+autocmd FileType c,h,java,rb setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
+autocmd FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
+autocmd FileType * setlocal textwidth=78
+
+set background=dark
+
+" Show matching brackets for 50ms
 set showmatch
-" Bracket blinking.
 set mat=5
+
+" Show every tab as ^I (shouldn't be any because of expandtab)
+" and shows $ at end of line and trailing space as ~
 set list
-" Show $ at end of line and trailing space as ~
-set lcs=tab:\ \ ,eol:$,trail:~,extends:>,precedes:<
+set listchars=tab:\ \ ,eol:$,trail:~,extends:>,precedes:<
+
 " No blinking .
 set novisualbell
 " No noise.
 set noerrorbells
-" Always show status line.
-set laststatus=2
-set background=dark
 
 " Backups & Files
 " Enable creation of backup file.
@@ -54,7 +70,7 @@ set backupdir=~/.vim/backups
 " Where temporary files will go.
 set directory=~/.vim/tmp
 
-" GVIM / MacVim
+" GVIM / MacVim no toolbars
 set guioptions-=L
 set guioptions-=T
 set guioptions-=r
