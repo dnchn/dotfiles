@@ -42,10 +42,6 @@ set autoindent
 set smarttab
 setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
 
-" Make buffer switching easy
-map <C-j> :bprev<CR>
-map <C-k> :bnext<CR>
-
 if has('gui_running')
   " GVIM / MacVim no toolbars
   set guioptions=cMg
