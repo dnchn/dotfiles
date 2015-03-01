@@ -11,11 +11,11 @@ setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
 setopt AUTO_CD
 setopt CORRECT
+autoload -U compinit && compinit
 
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-rvm default 1.9.2
 
-PATH=$PATH
+PATH=.:$PATH
 function precmd {
 # let's get the current get branch that we are under
 # ripped from /etc/bash_completion.d/git from the git devs
@@ -141,3 +141,9 @@ setopt AUTO_PUSHD
 # history search
 bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
+export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
+export PIP_REQUIRE_VIRTUALENV=true
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+export ANDROID_HOME=/usr/local/opt/android-sdk
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

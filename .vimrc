@@ -1,4 +1,34 @@
 set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'wincent/Command-T'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-speeddating'
+Plugin 'scrooloose/syntastic'
+
+Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'Keithbsmiley/swift.vim'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'elzr/vim-json'
+Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'mxw/vim-jsx'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'othree/html5.vim'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'vim-scripts/JavaScript-Indent'
+
+" color schemes
+Plugin 'Lokaltog/vim-distinguished'
+call vundle#end()
+
+if has("autocmd")
+  filetype plugin indent on
+endif
 
 syntax on
 set history=256
@@ -37,10 +67,12 @@ set novisualbell
 " No noise.
 set noerrorbells
 
-set textwidth=78
-set autoindent
-set smarttab
-setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
+set textwidth=80
+
+set tabstop=2
+set expandtab
+set shiftwidth=2
+set softtabstop=2
 
 if has('gui_running')
   " GVIM / MacVim no toolbars
@@ -62,14 +94,11 @@ function! g:ToggleNuMode()
 endfunction
 nnoremap <silent><C-L> :call g:ToggleNuMode()<cr>
 
-filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'elzr/vim-json'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-speeddating'
-Bundle 'wincent/Command-T'
+set t_Co=256
+set background=dark
+:silent! colorscheme distinguished
 
-filetype plugin indent on
+hi IndentGuidesOdd ctermbg=black
+hi IndentGuidesEven ctermbg=darkgrey
 
+let g:jsx_pragma_required = 1
