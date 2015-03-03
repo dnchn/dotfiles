@@ -13,7 +13,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'kien/ctrlp.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
-Plugin 'Rainmondi/delimitMate'
+Plugin 'Raimondi/delimitMate'
 
 Plugin 'nathanaelkane/vim-indent-guides'
 
