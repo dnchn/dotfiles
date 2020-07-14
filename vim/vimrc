@@ -1,0 +1,162 @@
+filetype off
+
+packadd minpac
+
+if exists('*minpac#init')
+  call minpac#init()
+  call minpac#add('k-takata/minpac', {'type': 'opt'})
+
+  call minpac#add('ctrlpvim/ctrlp.vim')
+  call minpac#add('christoomey/vim-sort-motion')
+  call minpac#add('michaeljsmith/vim-indent-object')
+  call minpac#add('nathanaelkane/vim-indent-guides')
+  call minpac#add('tpope/vim-fugitive')
+  call minpac#add('tpope/vim-repeat')
+  call minpac#add('tpope/vim-speeddating')
+  call minpac#add('tpope/vim-commentary')
+  call minpac#add('tpope/vim-surround')
+
+  " Syntax
+  call minpac#add('sheerun/vim-polyglot')
+  call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
+
+  " Colors
+  call minpac#add('lifepillar/vim-solarized8')
+
+  " minpac commands:
+  command! PackUpdate call minpac#update()
+  command! PackClean call minpac#clean()
+endif
+
+set shell=zsh
+
+if has("autocmd")
+  filetype plugin indent on
+endif
+
+
+" General Settings
+syntax enable
+set history=256
+
+set confirm
+set autowrite
+set autoread
+
+" Keep at least 4 lines below cursor
+set scrolloff=4
+
+" Always show status line.
+set laststatus=2
+
+" Show the current mode, command, and cursor position
+set showmode showcmd ruler
+
+" Show line number and the relative numbers
+set number
+set relativenumber
+
+"Search options
+set incsearch
+set hlsearch
+set ignorecase
+nnoremap / /\v
+vnoremap / /\v
+nnoremap <leader><space> :noh<cr>
+nnoremap <tab> %
+vnoremap <tab> %
+
+set nowrap
+
+" Allows backspacing over autoindent, line breaks, and start of insert
+set backspace=indent,eol,start
+
+" Time to wait after ESC (default causes an annoying delay)
+set timeoutlen=250
+set showmatch
+
+" Show every tab as ^I (shouldn't be any because of expandtab)
+" and shows $ at end of line and trailing space as ~
+set list
+set listchars=tab:\ \ ,eol:$,trail:~,extends:>,precedes:<
+
+" No blinking .
+set novisualbell
+" No noise.
+set noerrorbells
+
+set mouse=a
+
+" Shows the file browser
+let g:netrw_liststyle = 3
+let g:netrw_winsize   = 15
+let g:netrw_banner = 0
+nmap <leader>d :Lex<CR> " This will toggle the file explorer on/off
+
+set textwidth=79
+set colorcolumn=85
+
+set tabstop=2
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set autoindent
+set smartindent
+
+if has('gui_running')
+  " GVIM / MacVim no toolbars
+  set guioptions=cMg
+  "set guioptions-=LTrm
+end
+
+" Make buffer switching easy
+map <C-j> :bprev<CR>
+map <C-k> :bnext<CR>
+
+" Easier saving
+nmap <C-s> :w<cr>
+imap <C-s> <esc>:w<cr>
+
+" Pre-populate a split command with the current directory
+nmap <leader>v :vnew <C-r>=escape(expand("%:p:h"), ' ') . '/'<cr>
+" Copy the entire buffer into the system register
+nmap <leader>co ggVG*y
+
+" unicode
+set encoding=utf-8
+setglobal fileencoding=utf-8
+set nobomb
+set fileencodings=ucs-bom,utf-8,iso-8859-1
+
+" fuzzy find
+set path+=**
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
+set wildignore+=*.pdf,*.psd
+set wildignore+=**/node_modules/**
+
+set wildmenu
+
+" tags
+command MakeTag ! ctags -R .
+
+" complete
+set complete+=kspell
+
+"" escape
+inoremap jj <ESC>
+
+" ------ nathanaelkane/vim-indent-guides ------
+hi IndentGuidesOdd ctermbg=black
+hi IndentGuidesEven ctermbg=darkgrey
+" ------- ctrlp -----
+let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+let g:ctrlp_use_caching = 0
+
+if (has("termguicolors"))
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+let g:solarized_termtrans=1
+set background=dark
+colorscheme solarized8
